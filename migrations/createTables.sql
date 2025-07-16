@@ -1,0 +1,36 @@
+-- Tabelas principais
+CREATE TABLE User (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE Role (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE,
+  description TEXT
+);
+
+CREATE TABLE Permission (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE,
+  description TEXT
+);
+
+-- Relacionamentos N:N
+CREATE TABLE UserRole (
+  userId INTEGER NOT NULL,
+  roleId INTEGER NOT NULL,
+  PRIMARY KEY (userId, roleId),
+  FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE,
+  FOREIGN KEY (roleId) REFERENCES Role(id) ON DELETE CASCADE
+);
+
+CREATE TABLE RolePermission (
+  roleId INTEGER NOT NULL,
+  permissionId INTEGER NOT NULL,
+  PRIMARY KEY (roleId, permissionId),
+  FOREIGN KEY (roleId) REFERENCES Role(id) ON DELETE CASCADE,
+  FOREIGN KEY (permissionId) REFERENCES Permission(id) ON DELETE CASCADE
+);

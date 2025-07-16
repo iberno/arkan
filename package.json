@@ -1,0 +1,56 @@
+{
+  "name": "arkan",
+  "version": "1.0.0",
+  "description": "Micro-framework para APIs com RBAC, segurança e CLI em TypeScript",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "cli": "ts-node bin/cli.ts",
+    "test": "jest"
+  },
+  "bin": {
+    "arkan": "./bin/cli.ts"
+  },
+  "prisma": {
+  "seed": "node --loader ts-node/esm prisma/seed.ts"
+  },
+  "keywords": [
+    "api",
+    "framework",
+    "typescript",
+    "rbac",
+    "cli",
+    "express"
+  ],
+  "author": "Iberno & Copilot",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.12.0",
+    "bcryptjs": "^2.4.3",
+    "chalk": "^5.3.0",
+    "commander": "^14.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "inquirer": "^9.2.7",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.11.1",
+    "prisma": "^6.12.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/inquirer": "^9.0.3",
+    "@types/jest": "^29.5.3",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.6.0",
+    "jest": "^29.6.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
