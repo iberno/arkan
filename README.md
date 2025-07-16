@@ -1,6 +1,8 @@
 🧱 Arkan - Microframework para APIs REST em TypeScript
 
-Arkan é um microframework backend voltado para desenvolvimento de APIs com foco em segurança, modularidade e produtividade. Ele fornece:
+Arkan é um microframework backend voltado para desenvolvimento de APIs com foco em segurança, modularidade e produtividade. 
+
+Ele fornece:
 
 🚀 Setup inicial automatizado via CLI (arkan init)
 🔐 Autenticação e autorização com RBAC (Role-Based Access Control)
