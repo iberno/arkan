@@ -5,7 +5,10 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "tsx src/server.ts",
+    "setup": "rm -f prisma/dev.db && npx prisma migrate dev --name init && npx prisma db seed",
+    "db:reset": "rm -f prisma/dev.db && sqlite3 prisma/dev.db < migrations/createTables.sql",
+    "db:seed": "npx prisma db seed",
     "build": "tsc",
     "start": "node dist/server.js",
     "cli": "ts-node bin/cli.ts",
@@ -15,7 +18,7 @@
     "arkan": "./bin/cli.ts"
   },
   "prisma": {
-  "seed": "node --loader ts-node/esm prisma/seed.ts"
+    "seed": "node prisma/seed.cjs"
   },
   "keywords": [
     "api",
@@ -29,6 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "^6.12.0",
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^5.3.0",
     "commander": "^14.0.0",
@@ -48,9 +52,11 @@
     "@types/inquirer": "^9.0.3",
     "@types/jest": "^29.5.3",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.19.8",
     "jest": "^29.6.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
   }
 }

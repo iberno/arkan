@@ -1,6 +1,11 @@
 // src/config/env.ts
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Corrige o __dirname para funcionar com ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Carrega o arquivo .env da raiz
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });

@@ -1,9 +1,57 @@
-// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite" // Pode ser alterado para "postgresql", "mysql", etc.
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  password String
+  userRole UserRole[]
+
+  @@map("users")
+}
+
+model Role {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  description    String?
+  userRole       UserRole[]
+  rolePermission RolePermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  description    String?
+  rolePermission RolePermission[]
+
+  @@map("permissions")
+}
+
+model UserRole {
+  userId Int
+  roleId Int
+  user   User @relation(fields: [userId], references: [id])
+  role   Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model RolePermission {
+  roleId       Int
+  permissionId Int
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
 }
